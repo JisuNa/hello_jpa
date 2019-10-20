@@ -4,9 +4,9 @@
 <table>
     <thead>
         <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Age</td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
         </tr>
     </thead>
     <tbody>
