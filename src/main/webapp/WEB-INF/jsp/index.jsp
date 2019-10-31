@@ -10,8 +10,9 @@
         </tr>
     </thead>
     <tbody>
-    <c:forEach var="item" items="${list}">
+    <c:forEach var="item" items="${list}" varStatus="vs">
         <tr>
+            <td><input type="checkbox" value="<c:out value='vs'/>"/></td>
             <td>${item.id}</td>
             <td>${item.name}</td>
             <td>${item.age}</td>
@@ -19,3 +20,6 @@
     </c:forEach>
     </tbody>
 </table>
+<input type="button" id="regist" value="등록"/>
+<input type="button" id="update" value="수정"/>
+<input type="button" id="delete" value="삭제"/>
