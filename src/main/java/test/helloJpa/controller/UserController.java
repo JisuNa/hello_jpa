@@ -71,15 +71,15 @@ public class UserController {
     }
 
     @PostMapping(value="/delete")
-    public ResponseEntity<?> deleteUser(@RequestBody Long[] seq) {
-
-        System.out.println(seq[0]);
+    public ResponseEntity<?> deleteUser(@RequestBody String seq) {
+        System.out.println(seq);
 
 //        usersRepository.findById(seqs);
 
-        Map<String,Object> map = new HashMap<>();
-        map.put("result_code","1");
-        map.put("result_type","success");
-        return new ResponseEntity<>(map, HttpStatus.OK);
+//        Map<String,Object> map = new HashMap<>();
+//        map.put("result_code","1");
+//        map.put("result_type","success");
+        return new ResponseEntity<>("", HttpStatus.OK);
+
     }
 }

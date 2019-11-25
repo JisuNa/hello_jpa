@@ -47,13 +47,16 @@
         seqs.each(function(idx, item) {
             seq.push($(item).val());
         });
-        // console.log(seq); return;
+
+
+
         $.ajax({
             url:'/users/delete',
             type:'POST',
-            data: {
+            contentType : "application/json; charset=UTF-8",
+            data: JSON.stringify({
                 "seq":seq
-            },
+            }),
             dataType:'json'
         }).done(function (result) {
             if(result.result_code) {
