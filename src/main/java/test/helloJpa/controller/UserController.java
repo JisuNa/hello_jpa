@@ -25,10 +25,10 @@ public class UserController {
         this.usersRepository = usersRepository;
     }
 
-    @GetMapping(value="")
+    @GetMapping(value="/list")
     public String index(Model model) {
         model.addAttribute("list", usersRepository.findAll());
-        return "index";
+        return "users/list";
     }
 
     @GetMapping(value="/create")
@@ -70,9 +70,16 @@ public class UserController {
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
-    @DeleteMapping(value="delete")
-    public ResponseEntity<?> deleteUser(@ModelAttribute Users users) {
-        usersRepository.delete(users);
-        return new ResponseEntity<>("", HttpStatus.OK);
+    @PostMapping(value="/delete")
+    public ResponseEntity<?> deleteUser(@RequestBody Long[] seq) {
+
+        System.out.println(seq[0]);
+
+//        usersRepository.findById(seqs);
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("result_code","1");
+        map.put("result_type","success");
+        return new ResponseEntity<>(map, HttpStatus.OK);
     }
 }

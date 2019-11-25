@@ -40,7 +40,7 @@
         }).done(function (result) {
             if(result.result_code) {
                 alert('등록완료');
-                location.href='/users';
+                location.href='/users/list';
             }
         });
     });
