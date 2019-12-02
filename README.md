@@ -16,11 +16,9 @@
 2. Redis - 세션
 3. Firebase - 채팅, 푸시알림
 4. Coludflare - DDOS 방어인거 같은데 뭔지 잘 모르겠다.
-
-5. Object-C
-6. Swift
-
-
-7. Jenkins
-8. Docker
-9. 쿠버네티스
+5. Google OTP
+6. Object-C
+7. Swift
+8. Jenkins
+9. Docker
+10. 쿠버네티스
