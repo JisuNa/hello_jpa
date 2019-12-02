@@ -12,15 +12,15 @@
 
 ### 이 프로젝트 완료 후 해야할 목록
 
-Spring security
-Redis - 세션
-Firebase - 채팅, 푸시알림
-Coludflare - DDOS 방어인거 같은데 뭔지 잘 모르겠다.
+1. Spring security
+2. Redis - 세션
+3. Firebase - 채팅, 푸시알림
+4. Coludflare - DDOS 방어인거 같은데 뭔지 잘 모르겠다.
 
-Object-C
-Swift
+5. Object-C
+6. Swift
 
 
-Jenkins
-Docker
-쿠버네티스
+7. Jenkins
+8. Docker
+9. 쿠버네티스
