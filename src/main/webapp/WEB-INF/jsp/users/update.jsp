@@ -38,7 +38,7 @@
             },
             dataType:'json'
         }).done(function (result) {
-            if(result.result_code) {
+            if(result.code) {
                 alert('등록완료');
                 location.href='/users/list';
             }

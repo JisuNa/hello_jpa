@@ -59,7 +59,7 @@
             }),
             dataType:'json'
         }).done(function (result) {
-            if(result.result_code) {
+            if(result.code) {
                 alert('삭제완료');
                 location.href='/users/list';
             }

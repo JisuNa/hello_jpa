@@ -15,7 +15,6 @@ import test.helloJpa.persistence.UsersRepository;
 import java.util.HashMap;
 import java.util.Map;
 
-
 @Controller
 @RequestMapping(value="/users")
 public class UserController {
@@ -42,8 +41,8 @@ public class UserController {
     public ResponseEntity<?> createAction(@ModelAttribute Users users) {
         usersRepository.save(users);
         Map<String,Object> map = new HashMap<>();
-        map.put("result_code","1");
-        map.put("result_type","success");
+        map.put("code","1");
+        map.put("type","success");
 
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
@@ -65,8 +64,8 @@ public class UserController {
     public ResponseEntity<?> updateAction(@ModelAttribute Users users) {
         usersRepository.save(users);
         Map<String,Object> map = new HashMap<>();
-        map.put("result_code","1");
-        map.put("result_type","success");
+        map.put("code","1");
+        map.put("type","success");
 
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
@@ -80,14 +79,18 @@ public class UserController {
 
         Users users = null;
 
-        for (int i=0; i<seq.length; i++) {
+        for(int i=0; i<seq.length; i++) {
             users = new Users();
             users = usersRepository.findById(Long.parseLong(seq[i])).get();
             users.setIs_deleted('1');
             usersRepository.save(users);
         }
 
-        return new ResponseEntity<>("", HttpStatus.OK);
+        Map<String,Object> map = new HashMap<>();
+        map.put("code","1");
+        map.put("type","success");
+
+        return new ResponseEntity<>(map, HttpStatus.OK);
 
     }
 }
