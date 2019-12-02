@@ -4,9 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Data
 @Entity
 @Table(name="users")
+@Data
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,5 +14,9 @@ public class Users {
     private String id;
     private String name;
     private int age;
+    private char is_deleted;
 
 }
+
+
+

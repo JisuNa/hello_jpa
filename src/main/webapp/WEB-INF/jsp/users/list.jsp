@@ -15,7 +15,7 @@
         <tbody>
         <c:forEach var="item" items="${list}" varStatus="vs">
             <tr>
-                <td><input type="checkbox" name="seqs[]" class="seq" value="${vs.index}"/></td>
+                <td><input type="checkbox" name="seqs[]" class="seq" value="${item.seq}"/></td>
                 <td><a href="/users/view/${item.seq}">${item.id}</a></td>
                 <td>${item.name}</td>
                 <td>${item.age}</td>

@@ -1,19 +1,20 @@
 package test.helloJpa.controller;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+
 import test.helloJpa.entity.Users;
 import test.helloJpa.persistence.UsersRepository;
 
-import javax.net.ssl.HttpsURLConnection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
+
 
 @Controller
 @RequestMapping(value="/users")
@@ -71,14 +72,21 @@ public class UserController {
     }
 
     @PostMapping(value="/delete")
-    public ResponseEntity<?> deleteUser(@RequestBody String seq) {
-        System.out.println(seq);
+    public ResponseEntity<?> deleteUser(@RequestBody String seq_arr) {
+        JsonObject obj = new JsonParser().parse(seq_arr).getAsJsonObject();
 
-//        usersRepository.findById(seqs);
+        String seqs = String.valueOf(obj.get("seq")).replace("[", "").replace("]","").replace("\"", "");;
+        String[] seq = seqs.split(",");
 
-//        Map<String,Object> map = new HashMap<>();
-//        map.put("result_code","1");
-//        map.put("result_type","success");
+        Users users = null;
+
+        for (int i=0; i<seq.length; i++) {
+            users = new Users();
+            users = usersRepository.findById(Long.parseLong(seq[i])).get();
+            users.setIs_deleted('1');
+            usersRepository.save(users);
+        }
+
         return new ResponseEntity<>("", HttpStatus.OK);
 
     }
