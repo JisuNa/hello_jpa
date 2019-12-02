@@ -2,6 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
+<input type="button" id="regist" value="등록"/>
+<input type="button" id="delete" value="삭제"/>
+${totalPage}
 <form action="/update/action">
     <table>
         <thead>
@@ -24,8 +27,11 @@
         </tbody>
     </table>
 </form>
-<input type="button" id="regist" value="등록"/>
-<input type="button" id="delete" value="삭제"/>
+<br/>
+검색어<input type="text" name="keyword" id="keyword" value=<c:out value="${keyword}"/>>
+<input type="button" name="search" id="search" value="조회"/>
+<br/>
+<c:forEach var=""
 
 <script>
     $('#regist').click(function () {

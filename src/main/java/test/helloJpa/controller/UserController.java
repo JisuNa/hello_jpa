@@ -3,6 +3,11 @@ package test.helloJpa.controller;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,6 +18,7 @@ import test.helloJpa.entity.Users;
 import test.helloJpa.persistence.UsersRepository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -26,8 +32,22 @@ public class UserController {
     }
 
     @GetMapping(value="/list")
-    public String index(Model model) {
-        model.addAttribute("list", usersRepository.findAll());
+    public String index(Model model
+            , @RequestParam(defaultValue = "") String keyword
+            , @PageableDefault(size=10, sort = "seq", direction = Sort.Direction.DESC) Pageable pageable) {
+
+        if(keyword.isEmpty()) {
+            Page<Users> pageInfo = usersRepository.findAll(pageable);
+            model.addAttribute("list", pageInfo.getContent());
+            model.addAttribute("totalPage", pageInfo.getTotalPages());
+            
+        } else {
+            model.addAttribute("keyword", keyword);
+            model.addAttribute("list", usersRepository.findByIdContaining(keyword));
+        }
+
+        model.addAttribute("pageInfo", pageable);
+
         return "users/list";
     }
 
