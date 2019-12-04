@@ -22,3 +22,5 @@
 8. Jenkins
 9. Docker
 10. 쿠버네티스
+11. 파일업로드
+12. FormStone을 사용하여 File Drag&Drop 구현
