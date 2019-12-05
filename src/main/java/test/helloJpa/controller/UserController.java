@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import test.helloJpa.component.utils.Pagenation;
 import test.helloJpa.entity.Users;
 import test.helloJpa.persistence.UsersRepository;
 
@@ -36,17 +37,21 @@ public class UserController {
             , @RequestParam(defaultValue = "") String keyword
             , @PageableDefault(size=10, sort = "seq", direction = Sort.Direction.DESC) Pageable pageable) {
 
+        Pagenation pagenation = null;
+
+        // 검색이 없을 경우
         if(keyword.isEmpty()) {
             Page<Users> pageInfo = usersRepository.findAll(pageable);
+            pagenation = new Pagenation(pageable.getPageSize(), pageable.getPageNumber());
+
             model.addAttribute("list", pageInfo.getContent());
+            model.addAttribute("pagenation", pagenation);
             model.addAttribute("totalPage", pageInfo.getTotalPages());
             
         } else {
             model.addAttribute("keyword", keyword);
             model.addAttribute("list", usersRepository.findByIdContaining(keyword));
         }
-
-        model.addAttribute("pageInfo", pageable);
 
         return "users/list";
     }
