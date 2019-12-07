@@ -39,19 +39,13 @@ public class UserController {
 
         Pagenation pagenation = null;
 
-        // 검색이 없을 경우
-        if(keyword.isEmpty()) {
-            Page<Users> pageInfo = usersRepository.findAll(pageable);
-            pagenation = new Pagenation(pageable.getPageSize(), pageable.getPageNumber());
+        Page<Users> pageInfo = usersRepository.findByIdContaining(keyword, pageable);
+        pagenation = new Pagenation(pageInfo.getTotalPages(), pageable.getPageNumber());
 
-            model.addAttribute("list", pageInfo.getContent());
-            model.addAttribute("pagenation", pagenation);
-            model.addAttribute("totalPage", pageInfo.getTotalPages());
-            
-        } else {
-            model.addAttribute("keyword", keyword);
-            model.addAttribute("list", usersRepository.findByIdContaining(keyword));
-        }
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("list", pageInfo.getContent());
+        model.addAttribute("pagenation", pagenation);
+        model.addAttribute("totalPage", pageInfo.getTotalPages());
 
         return "users/list";
     }
